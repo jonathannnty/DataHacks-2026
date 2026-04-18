@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-civic-bone text-civic-slateDark font-civic antialiased;
+}
+
+.iso-scene {
+  perspective: 1400px;
+  perspective-origin: 50% 35%;
+}
+
+.iso-grid {
+  transform-style: preserve-3d;
+  transform: rotateX(60deg) rotateZ(-45deg);
+}
+
+.iso-tile {
+  position: absolute;
+  width: 128px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.iso-citizen {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.iso-tile-inner {
+  /* Counter-rotate so building sprites face the camera */
+  transform: rotateZ(45deg) rotateX(-60deg);
+}

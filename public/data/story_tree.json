@@ -1,0 +1,329 @@
+{
+  "startNodeId": "ROOT_001",
+  "nodes": {
+    "ROOT_001": {
+      "id": "ROOT_001",
+      "title": "The Great Overflow",
+      "text": "The Landfill is 85% full.",
+      "context": "In 2026, WasteVille's only municipal landfill is at 85% of its permitted airspace. EPA MSW trend data shows food scraps and single-use plastics driving most of the growth. You have one year of runway.",
+      "choices": [
+        {
+          "text": "Enact a city-wide Plastic Ban (source reduction).",
+          "nextNodeId": "POLICY_REDUCE_01",
+          "modifiers": {
+            "Treasury": -6,
+            "EcoHealth": 14,
+            "PublicSentiment": -8,
+            "InfrastructureLoad": -4,
+            "SocialEquity": -4
+          },
+          "mapUpdates": {
+            "targetBuilding": "road_network",
+            "newAssetId": "paved_road_clean_v1"
+          }
+        },
+        {
+          "text": "Fund a Waste-to-Energy (WTE) incinerator.",
+          "nextNodeId": "INFRA_WTE_01",
+          "modifiers": {
+            "Treasury": -25,
+            "EcoHealth": -8,
+            "PublicSentiment": -6,
+            "InfrastructureLoad": -20,
+            "SocialEquity": -6
+          },
+          "mapUpdates": {
+            "targetBuilding": "industrial_zone",
+            "newAssetId": "wte_plant_active_v1"
+          }
+        },
+        {
+          "text": "Do nothing meaningful. Cap odors and wait.",
+          "nextNodeId": "STRICT_CRISIS_01",
+          "modifiers": {
+            "Treasury": 5,
+            "EcoHealth": -12,
+            "PublicSentiment": -10,
+            "InfrastructureLoad": 9,
+            "SocialEquity": -6
+          },
+          "mapUpdates": {
+            "targetBuilding": "road_network",
+            "newAssetId": "littered_road_heavy_v2"
+          }
+        }
+      ]
+    },
+    "POLICY_REDUCE_01": {
+      "id": "POLICY_REDUCE_01",
+      "title": "The Plastic Ban Bites",
+      "text": "Retailers file a lawsuit; low-income residents can't afford compostables.",
+      "context": "Single-use plastics grew from <1% of MSW in 1960 to ~13% today. A blanket ban cuts landfill inflow but stresses retailers and regressively hits low-income households without subsidies.",
+      "choices": [
+        {
+          "text": "Subsidize compostable packaging for SMBs and SNAP households.",
+          "nextNodeId": "POLICY_PAYT_02",
+          "modifiers": {
+            "Treasury": -20,
+            "EcoHealth": 11,
+            "PublicSentiment": 6,
+            "InfrastructureLoad": -5,
+            "SocialEquity": 12
+          },
+          "mapUpdates": {
+            "targetBuilding": "road_network",
+            "newAssetId": "paved_road_clean_v1"
+          }
+        },
+        {
+          "text": "Hold the line. Strict fines for non-compliance.",
+          "nextNodeId": "POLICY_PAYT_02",
+          "modifiers": {
+            "Treasury": 10,
+            "EcoHealth": 9,
+            "PublicSentiment": -20,
+            "InfrastructureLoad": -4,
+            "SocialEquity": -8
+          },
+          "mapUpdates": {
+            "targetBuilding": "city_hall",
+            "newAssetId": "city_hall_enforcement_v1"
+          }
+        }
+      ]
+    },
+    "POLICY_PAYT_02": {
+      "id": "POLICY_PAYT_02",
+      "title": "Pay-As-You-Throw Rollout",
+      "text": "Weight-based billing cuts tonnage 18% — but illegal dumping appears near parks.",
+      "context": "PAYT programs typically divert 15-30% of waste, but regressive without protections. Enforcement mechanisms carry equity costs.",
+      "choices": [
+        {
+          "text": "Install trash cameras in dumping hotspots.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": 12,
+            "EcoHealth": 10,
+            "PublicSentiment": -15,
+            "InfrastructureLoad": -6,
+            "SocialEquity": -10
+          },
+          "mapUpdates": {
+            "targetBuilding": "park_zone",
+            "newAssetId": "park_cctv_v1"
+          }
+        },
+        {
+          "text": "Fund free community cleanup + bulk drop-off days.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": -12,
+            "EcoHealth": 12,
+            "PublicSentiment": 10,
+            "InfrastructureLoad": -5,
+            "SocialEquity": 8
+          },
+          "mapUpdates": {
+            "targetBuilding": "residential",
+            "newAssetId": "residential_cleanup_day_v1"
+          }
+        }
+      ]
+    },
+    "INFRA_WTE_01": {
+      "id": "INFRA_WTE_01",
+      "title": "Waste-to-Energy's Ash Problem",
+      "text": "The WTE stacks are lit — but residents near the plant report respiratory issues.",
+      "context": "WTE reduces landfill volume ~90% but produces bottom/fly ash (10-25% of input by weight) that requires hazardous-class landfilling and stresses downwind air quality.",
+      "choices": [
+        {
+          "text": "Export ash to a neighboring state under regulated contracts.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": -15,
+            "EcoHealth": 4,
+            "PublicSentiment": -6,
+            "InfrastructureLoad": -5,
+            "SocialEquity": 4
+          },
+          "mapUpdates": {
+            "targetBuilding": "industrial_zone",
+            "newAssetId": "wte_ash_export_v1"
+          }
+        },
+        {
+          "text": "Build a hazardous-ash landfill near the industrial flats.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": -10,
+            "EcoHealth": -20,
+            "PublicSentiment": -25,
+            "InfrastructureLoad": -8,
+            "SocialEquity": -15
+          },
+          "mapUpdates": {
+            "targetBuilding": "landfill",
+            "newAssetId": "landfill_hazard_cell_v1"
+          }
+        }
+      ]
+    },
+    "STRICT_CRISIS_01": {
+      "id": "STRICT_CRISIS_01",
+      "title": "Status Quo Breakdown",
+      "text": "Regulators issue a Notice of Violation. Rats and odor complaints spike.",
+      "context": "Deferring structural action accelerates capacity exhaustion. Emergency hauling costs roughly 3-5x contracted rates.",
+      "choices": [
+        {
+          "text": "Sign emergency hauling contracts at premium rates.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": -22,
+            "EcoHealth": 2,
+            "PublicSentiment": -10,
+            "InfrastructureLoad": -12,
+            "SocialEquity": -6
+          },
+          "mapUpdates": {
+            "targetBuilding": "landfill",
+            "newAssetId": "landfill_temp_relief_v1"
+          }
+        },
+        {
+          "text": "Delay and issue compliance notices only.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": 4,
+            "EcoHealth": -14,
+            "PublicSentiment": -12,
+            "InfrastructureLoad": 10,
+            "SocialEquity": -8
+          },
+          "mapUpdates": {
+            "targetBuilding": "road_network",
+            "newAssetId": "littered_road_overflow_v2"
+          }
+        }
+      ]
+    },
+    "CRISIS_GATE_01": {
+      "id": "CRISIS_GATE_01",
+      "title": "The Equity Threshold",
+      "text": "Neighborhood councils request an audience. Route will be chosen by the state of the city.",
+      "context": "Routing gate. If SocialEquity<30 or PublicSentiment<30, a NIMBY protest branch triggers; otherwise Phase 1 stabilization.",
+      "choices": [
+        {
+          "text": "Hold a town hall and hear the next demand.",
+          "nextNodeId": "PHASE1_STABILIZE_01",
+          "modifiers": {
+            "Treasury": -2,
+            "EcoHealth": 4,
+            "PublicSentiment": 5,
+            "InfrastructureLoad": 3,
+            "SocialEquity": 4
+          },
+          "mapUpdates": {
+            "targetBuilding": "city_hall",
+            "newAssetId": "city_hall_stability_plan_v1"
+          }
+        }
+      ]
+    },
+    "PHASE1_STABILIZE_01": {
+      "id": "PHASE1_STABILIZE_01",
+      "title": "Phase 1 Stabilized",
+      "text": "The city absorbed the shock. Citizens are cautiously hopeful.",
+      "context": "Route to Action Center stabilized guidance.",
+      "terminal": true,
+      "endStateReason": "STABILIZED",
+      "choices": []
+    },
+    "PHASE1_FAILURE_01": {
+      "id": "PHASE1_FAILURE_01",
+      "title": "Phase 1 Failed",
+      "text": "The city fractures along equity lines. The mayor resigns.",
+      "context": "Route to Action Center failure guidance (equity-centered mitigation).",
+      "terminal": true,
+      "endStateReason": "FAILED",
+      "choices": []
+    },
+    "LANDFILL_FIRE": {
+      "id": "LANDFILL_FIRE",
+      "title": "CATASTROPHE: Landfill Fire",
+      "text": "Methane pockets ignited at the overflowing landfill. Smoke blots out the sun.",
+      "context": "Triggered when InfrastructureLoad exceeds 80. Subsurface landfill fires can smolder for years and release dioxins. Real-world precedent: Bridgeton, MO (2010-ongoing).",
+      "catastrophe": true,
+      "choices": [
+        {
+          "text": "Emergency foam + evacuation of the downwind school district.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": -25,
+            "EcoHealth": -15,
+            "PublicSentiment": -12,
+            "InfrastructureLoad": -20,
+            "SocialEquity": 2
+          },
+          "mapUpdates": {
+            "targetBuilding": "landfill",
+            "newAssetId": "landfill_fire_active_v1"
+          }
+        },
+        {
+          "text": "Let it burn out. Issue shelter-in-place and save the budget.",
+          "nextNodeId": "PHASE1_FAILURE_01",
+          "modifiers": {
+            "Treasury": -5,
+            "EcoHealth": -30,
+            "PublicSentiment": -30,
+            "InfrastructureLoad": -10,
+            "SocialEquity": -20
+          },
+          "mapUpdates": {
+            "targetBuilding": "landfill",
+            "newAssetId": "landfill_fire_neglected_v1"
+          }
+        }
+      ]
+    },
+    "MARKET_CRASH": {
+      "id": "MARKET_CRASH",
+      "title": "CATASTROPHE: Recyclables Market Crash",
+      "text": "China's National Sword hits WasteVille. Mixed paper is suddenly worthless.",
+      "context": "Triggered by a random 5% roll. Global commodity shocks (like the 2018 China National Sword policy) can collapse recyclable buyer markets overnight, forcing municipalities to landfill diverted material.",
+      "catastrophe": true,
+      "choices": [
+        {
+          "text": "Take an emergency bond to build a domestic MRF.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": -30,
+            "EcoHealth": 6,
+            "PublicSentiment": -4,
+            "InfrastructureLoad": -6,
+            "SocialEquity": 3
+          },
+          "mapUpdates": {
+            "targetBuilding": "recycling_center",
+            "newAssetId": "recycling_center_mrf_v2"
+          }
+        },
+        {
+          "text": "Landfill the diverted stream and cut the recycling program.",
+          "nextNodeId": "CRISIS_GATE_01",
+          "modifiers": {
+            "Treasury": 8,
+            "EcoHealth": -16,
+            "PublicSentiment": -18,
+            "InfrastructureLoad": 12,
+            "SocialEquity": -4
+          },
+          "mapUpdates": {
+            "targetBuilding": "recycling_center",
+            "newAssetId": "recycling_center_shuttered_v1"
+          }
+        }
+      ]
+    }
+  }
+}
