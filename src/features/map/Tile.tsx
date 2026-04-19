@@ -12,33 +12,37 @@ export type TileProps = {
   kind: TileKind;
   x: number;
   y: number;
+  zOffset?: number;
   children?: React.ReactNode;
 };
 
 const kindToClass: Record<TileKind, string> = {
   clean_grass:
-    "bg-gradient-to-br from-emerald-400 via-emerald-500 to-emerald-600 ring-emerald-700/40",
+    "bg-gradient-to-br from-emerald-300 via-emerald-500 to-emerald-700 ring-emerald-900/45",
   polluted_grass:
-    "bg-gradient-to-br from-yellow-700 via-amber-700 to-stone-700 ring-stone-900/50",
+    "bg-gradient-to-br from-amber-600 via-amber-700 to-stone-800 ring-stone-900/55",
   clean_water:
-    "bg-gradient-to-br from-sky-300 via-sky-400 to-sky-600 ring-sky-700/40",
+    "bg-gradient-to-br from-cyan-300 via-sky-500 to-blue-700 ring-blue-900/45",
   toxic_water:
-    "bg-gradient-to-br from-lime-500 via-emerald-800 to-stone-900 ring-lime-900/60",
+    "bg-gradient-to-br from-lime-600 via-emerald-900 to-stone-950 ring-lime-950/65",
   paved_road:
-    "bg-gradient-to-br from-slate-400 via-slate-500 to-slate-600 ring-slate-700/40",
+    "bg-gradient-to-br from-slate-300 via-slate-500 to-slate-700 ring-slate-900/50",
   littered_road:
-    "bg-gradient-to-br from-amber-700 via-stone-600 to-slate-700 ring-stone-900/50",
+    "bg-gradient-to-br from-amber-700 via-stone-700 to-slate-800 ring-stone-950/55",
 };
 
-export function Tile({ kind, x, y, children }: TileProps) {
+export function Tile({ kind, x, y, zOffset = 0, children }: TileProps) {
   const { left, top } = gridToIso({ x, y });
+  const depth = (x + y) * 100 + x + zOffset;
   return (
     <div
       data-tile-kind={kind}
+      data-depth={depth}
       className="iso-tile"
       style={{
         left,
         top,
+        zIndex: depth,
         width: TILE_WIDTH,
         height: TILE_HEIGHT,
       }}

@@ -1,0 +1,45 @@
+/* WasteVille design-system tokens from the provided design bundle. */
+:root {
+  --oak-900: #3b2a1a;
+  --oak-800: #4a341f;
+  --oak-700: #6b4a2b;
+  --oak-500: #8d6a3e;
+  --oak-300: #c9a66b;
+  --paper-50: #f5ecd7;
+  --paper-100: #ede1c4;
+  --paper-200: #d9c99e;
+  --ink-900: #1a1410;
+  --ink-700: #3b2e24;
+  --wax-red: #a8242b;
+  --wax-red-dark: #7a161c;
+
+  --civic-emerald: #10b981;
+  --civic-emerald-dark: #047857;
+  --civic-slate: #334155;
+  --civic-slate-dark: #0f172a;
+  --civic-slate-light: #64748b;
+  --civic-bone: #f8fafc;
+  --civic-warning: #f59e0b;
+  --civic-danger: #ef4444;
+
+  --grass-clean-1: #34d399;
+  --grass-clean-2: #10b981;
+  --grass-clean-3: #059669;
+  --grass-polluted-1: #a16207;
+  --grass-polluted-2: #b45309;
+  --grass-polluted-3: #57534e;
+  --water-clean-1: #7dd3fc;
+  --water-clean-2: #38bdf8;
+  --water-clean-3: #0284c7;
+  --water-toxic-1: #84cc16;
+  --water-toxic-2: #065f46;
+  --water-toxic-3: #1c1917;
+  --road-paved-1: #94a3b8;
+  --road-paved-2: #64748b;
+  --road-paved-3: #475569;
+
+  --font-display: "Special Elite", "Courier Prime", "Courier New", monospace;
+  --font-serif: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", monospace;
+}

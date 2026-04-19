@@ -3,6 +3,7 @@ import type { StoryNode } from "./storyNode";
 export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   {
     NodeID: "ROOT_001",
+    Day: 1,
     Title: "The Great Overflow",
     Context:
       "It is 2026. WasteVille's historical MSW trendlines show a major rise in food waste and plastics, and the city's only landfill is at 85% capacity. The EPA is knocking and the smell is reaching the suburbs. How do we handle the next 5.0 lbs of waste per person per day?",
@@ -58,6 +59,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "POLICY_REDUCE_01",
+    Day: 2,
     Title: "The Plastic Ban",
     Context:
       "Single-use plastics have grown from a negligible share of MSW in 1960 to a major share today. WasteVille considers a city-wide ban, but the policy creates cost pressure for retailers and residents.",
@@ -98,6 +100,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "POLICY_PAYT_02",
+    Day: 3,
     Title: "Pay-As-You-Throw Rollout",
     Context:
       "Weight-based pricing is introduced. The policy diverts waste but can be regressive without protections, and illegal dumping begins to appear near parks and apartment clusters.",
@@ -137,6 +140,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "INFRA_EXPAND_01",
+    Day: 2,
     Title: "Engineering Pivot",
     Context:
       "WasteVille debates fast capacity additions. Landfilling, recycling, composting, and combustion with energy recovery each carry different cost and externality profiles.",
@@ -176,6 +180,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "INFRA_WTE_01",
+    Day: 3,
     Title: "Waste-to-Energy Ash Problem",
     Context:
       "Combustion reduces landfill pressure but creates ash-management and air-quality concerns. Residents near stack corridors report respiratory stress.",
@@ -215,6 +220,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "RECYCLE_COMPOST_01",
+    Day: 3,
     Title: "Facility Siting Conflict",
     Context:
       "Diversion infrastructure is technically favored, but siting conflict emerges across districts with uneven political power.",
@@ -254,6 +260,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "STRICT_CRISIS_01",
+    Day: 2,
     Title: "Status Quo Breakdown",
     Context:
       "Deferring structural action causes faster degradation: odor complaints, illegal dumping, and pressure from regulators increase over one quarter.",
@@ -293,6 +300,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "CRISIS_GATE_01",
+    Day: 3,
     Title: "Equity and Trust Threshold Check",
     Context:
       "System gate for branch routing. If SocialEquity or PublicSentiment falls below 30, protest escalation should trigger. Otherwise, move to stabilization planning.",
@@ -331,6 +339,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "CRISIS_PROTEST_01",
+    Day: 3,
     Title: "NIMBY Uprising",
     Context:
       "Public meetings collapse into protests: low-income residents argue that burdens are concentrated in their neighborhoods. You must choose a recycling center siting decision under pressure.",
@@ -369,6 +378,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "PHASE1_STABILIZE_01",
+    Day: 4,
     Title: "Phase 1 Stabilized",
     Context:
       "Landfill overflow risk is contained this cycle. Route to Action Center with policy-specific facts and a practical checklist for WasteVille residents.",
@@ -376,6 +386,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "PHASE1_FAILURE_01",
+    Day: 4,
     Title: "Phase 1 Failed",
     Context:
       "Crisis persists with compounding equity and trust damage. Route to Action Center failure guidance with EPA-aligned mitigation steps and community action ideas.",
@@ -383,6 +394,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "LANDFILL_FIRE",
+    Day: 3,
     Title: "CATASTROPHE: Landfill Fire",
     Context:
       "Methane pockets ignited at the overflowing landfill. Subsurface fires can smolder for years and release dioxins. Real-world precedent: Bridgeton, MO (2010-ongoing).",
@@ -423,6 +435,7 @@ export const WASTEVILLE_STORY_NODES: StoryNode[] = [
   },
   {
     NodeID: "MARKET_CRASH",
+    Day: 3,
     Title: "CATASTROPHE: Recyclables Market Crash",
     Context:
       "A global commodity shock (cf. China National Sword 2018) collapses recyclable buyer markets overnight. Diverted paper and plastic now have nowhere to go.",

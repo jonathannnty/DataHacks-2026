@@ -8,7 +8,7 @@
       "context": "In 2026, WasteVille's only municipal landfill is at 85% of its permitted airspace. EPA MSW trend data shows food scraps and single-use plastics driving most of the growth. You have one year of runway.",
       "choices": [
         {
-          "text": "Enact a city-wide Plastic Ban (source reduction).",
+          "text": "Plastic Ban",
           "nextNodeId": "POLICY_REDUCE_01",
           "modifiers": {
             "Treasury": -6,
@@ -23,7 +23,7 @@
           }
         },
         {
-          "text": "Fund a Waste-to-Energy (WTE) incinerator.",
+          "text": "Waste-to-Energy",
           "nextNodeId": "INFRA_WTE_01",
           "modifiers": {
             "Treasury": -25,
@@ -35,21 +35,6 @@
           "mapUpdates": {
             "targetBuilding": "industrial_zone",
             "newAssetId": "wte_plant_active_v1"
-          }
-        },
-        {
-          "text": "Do nothing meaningful. Cap odors and wait.",
-          "nextNodeId": "STRICT_CRISIS_01",
-          "modifiers": {
-            "Treasury": 5,
-            "EcoHealth": -12,
-            "PublicSentiment": -10,
-            "InfrastructureLoad": 9,
-            "SocialEquity": -6
-          },
-          "mapUpdates": {
-            "targetBuilding": "road_network",
-            "newAssetId": "littered_road_heavy_v2"
           }
         }
       ]

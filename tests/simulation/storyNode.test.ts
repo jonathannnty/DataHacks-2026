@@ -5,6 +5,7 @@ describe("story nodes", () => {
   it("supports the required StoryNode shape", () => {
     const node: StoryNode = {
       NodeID: "ROOT_001",
+      Day: 1,
       Title: "Test Node",
       Context: "Context",
       Choices: [],

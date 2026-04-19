@@ -1,10 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  gridToIso,
-  randomGridCoord,
-  type GridCoord,
-} from "./iso";
+import { gridToIso, randomGridCoord, type GridCoord } from "./iso";
 
 export type CitizenMood = "happy" | "neutral" | "upset";
 
@@ -55,6 +51,7 @@ export function CitizenBlob({ publicSentiment, seed = 0 }: CitizenBlobProps) {
 
   const from = gridToIso(coord);
   const to = gridToIso(target);
+  const depth = (target.x + target.y) * 100 + target.x + 90;
 
   return (
     <motion.div
@@ -62,6 +59,7 @@ export function CitizenBlob({ publicSentiment, seed = 0 }: CitizenBlobProps) {
       initial={{ left: from.left, top: from.top }}
       animate={{ left: to.left, top: to.top }}
       transition={{ duration: 2.2, ease: "linear" }}
+      style={{ zIndex: depth }}
     >
       <div className="iso-tile-inner relative">
         <div

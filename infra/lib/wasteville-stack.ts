@@ -64,6 +64,16 @@ export class WastevilleStack extends cdk.Stack {
       handler: "handler",
     });
 
+    const paytSocialEquityFn = new lambdaNode.NodejsFunction(
+      this,
+      "PaytSocialEquityFn",
+      {
+        ...commonLambdaProps,
+        entry: path.join(__dirname, "../lambda/calcPaytSocialEquity.ts"),
+        handler: "handler",
+      },
+    );
+
     userGamesTable.grantReadWriteData(processChoiceFn);
     globalStatsTable.grantReadWriteData(processChoiceFn);
     globalStatsTable.grantReadData(getStatsFn);
@@ -82,6 +92,13 @@ export class WastevilleStack extends cdk.Stack {
 
     const stats = api.root.addResource("stats");
     stats.addMethod("GET", new apigw.LambdaIntegration(getStatsFn));
+
+    const payt = api.root.addResource("payt");
+    const socialEquity = payt.addResource("social-equity");
+    socialEquity.addMethod(
+      "POST",
+      new apigw.LambdaIntegration(paytSocialEquityFn),
+    );
 
     new cdk.CfnOutput(this, "ApiUrl", { value: api.url });
     new cdk.CfnOutput(this, "UserGamesTableName", {

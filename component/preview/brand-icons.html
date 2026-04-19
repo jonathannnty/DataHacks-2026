@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Iconography</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap">
+<script src="https://unpkg.com/lucide@0.454.0/dist/umd/lucide.min.js"></script>
+<style>body{margin:0;padding:18px;background:#fff;font-family:Inter;color:#0f172a}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8d6a3e;margin:0 0 6px}
+.row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:10px}
+.i{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px;border:1px solid rgba(107,74,43,.2);border-radius:8px;background:#fffdf5}
+.i svg{width:24px;height:24px;stroke:#334155}
+.i span{font-family:Inter;font-size:10px;color:#64748b}
+</style></head><body>
+<div class="lbl">System icons · Lucide (CDN, 2px stroke)</div>
+<div class="row" id="r"></div>
+<div class="lbl">HUD glyphs (codebase defaults)</div>
+<div style="display:flex;gap:18px;font-size:22px">$ 🌿 🙂 ⚙ ⚖</div>
+<script>
+const names=['stamp','file-text','gavel','scale','coins','leaf','gauge','users','flame','trending-up','trending-down','info'];
+const r=document.getElementById('r');
+names.forEach(n=>{const d=document.createElement('div');d.className='i';d.innerHTML=`<i data-lucide="${n}"></i><span>${n}</span>`;r.appendChild(d)});
+lucide.createIcons();
+</script></body></html>

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(rm -rf /tmp/design-bundle-2)",
+      "Bash(mkdir -p /tmp/design-bundle-2)",
+      "Bash(tar -xzf \"C:\\\\Users\\\\jonat\\\\.claude\\\\projects\\\\c--Users-jonat-Desktop-Web-Dev-DataHacks-2026\\\\16d1ed0b-b539-4e8c-a0aa-c8023f063ffc\\\\tool-results\\\\webfetch-1776614972827-0ozlng.bin\" -C /tmp/design-bundle-2)",
+      "Read(//tmp/**)"
+    ]
+  }
+}

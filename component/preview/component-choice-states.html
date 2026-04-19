@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Choice states</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap">
+<style>body{margin:0;padding:16px;background:#f5ecd7;font-family:Inter}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.c{display:flex;gap:8px;padding:10px 12px;background:#fff9ea;border:1px solid rgba(107,74,43,.22);border-radius:8px;font-size:13px;font-weight:600;color:#1a1410;align-items:center}
+.c .k{width:20px;height:20px;border-radius:999px;background:#10b981;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex:0 0 auto}
+.hover{border-color:#10b981;background:#ecfdf5}.hover .k{background:#047857}
+.focus{outline:2px solid #10b981;outline-offset:2px}
+.press{transform:scale(.99);box-shadow:inset 0 2px 4px rgba(0,0,0,.08)}
+.disabled{opacity:.45;filter:grayscale(.3)}
+.lbl{font-family:Inter;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8d6a3e;margin:8px 0 4px}
+</style></head><body>
+<div class="lbl">Default · Hover · Focus · Pressed · Disabled</div>
+<div class="g">
+<div class="c"><span class="k">A</span>Default choice</div>
+<div class="c hover"><span class="k">B</span>Hover — emerald outline</div>
+<div class="c focus"><span class="k">C</span>Focus — 2px ring</div>
+<div class="c press"><span class="k">D</span>Pressed — scale .99</div>
+<div class="c disabled"><span class="k">E</span>Disabled</div>
+<div class="c" style="background:#fee2e2;border-color:#ef4444"><span class="k" style="background:#a8242b">!</span>Catastrophe-marked choice</div>
+</div></body></html>

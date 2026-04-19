@@ -1,0 +1,79 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Checklist</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+body{margin:0;padding:22px;background:#f5ecd7;font-family:'IBM Plex Serif',Georgia,serif;color:#1a1410}
+.sheet{
+  position:relative;
+  background:
+    linear-gradient(#fff9ea,#fff9ea),
+    repeating-linear-gradient(to bottom,transparent 0 27px, rgba(107,74,43,.14) 27px 28px);
+  background-blend-mode:multiply;
+  background-color:#fff9ea;
+  border:1px solid rgba(107,74,43,.25);
+  box-shadow:0 1px 0 rgba(0,0,0,.05), 0 6px 14px -8px rgba(0,0,0,.2);
+  padding:18px 20px 20px;
+  max-width:440px;
+}
+.hdr{
+  display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  padding-bottom:8px;margin-bottom:10px;border-bottom:1px solid rgba(107,74,43,.3);
+}
+.title{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:#8d6a3e
+}
+.form-id{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:9px;letter-spacing:.14em;color:#8d6a3e;
+}
+.heading{
+  font-family:'IBM Plex Serif',Georgia,serif;
+  font-size:17px;font-weight:600;letter-spacing:.01em;margin:0 0 12px;
+}
+ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:2px}
+li{
+  display:flex;gap:11px;padding:6px 4px 6px 2px;
+  font-family:'IBM Plex Serif',Georgia,serif;
+  font-size:14.5px;line-height:1.45;color:#1a1410;align-items:flex-start;
+}
+/* custom checkbox: hand-boxed look */
+.cb{
+  flex-shrink:0;width:16px;height:16px;margin-top:3px;
+  border:1.5px solid #3a2e24;border-radius:2px;background:#fff;
+  display:inline-flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.cb.done::after{
+  content:"";
+  position:absolute;left:2px;top:-2px;right:-2px;bottom:1px;
+  background:
+    linear-gradient(45deg,transparent 45%,#047857 46% 56%,transparent 57%),
+    linear-gradient(-45deg,transparent 45%,#047857 46% 56%,transparent 57%);
+  mix-blend-mode:multiply;
+  opacity:.9;
+  transform:rotate(-8deg);
+}
+li.done .text{color:#5b4a3a;text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:#8d6a3e}
+.footnote{
+  margin-top:14px;padding-top:8px;border-top:1px dashed rgba(107,74,43,.4);
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:9.5px;letter-spacing:.1em;color:#8d6a3e;
+  display:flex;justify-content:space-between;
+}
+</style></head><body>
+
+<div class="sheet">
+  <div class="hdr">
+    <span class="title">Form CW-14 · Practical Checklist</span>
+    <span class="form-id">No. 00248</span>
+  </div>
+  <h2 class="heading">Household Waste Reduction — Weekly</h2>
+  <ul>
+    <li class="done"><span class="cb done"></span><span class="text">Switch one recurring disposable to a reusable.</span></li>
+    <li><span class="cb"></span><span class="text">Audit your household bin weekly for one month.</span></li>
+    <li><span class="cb"></span><span class="text">Support local right-to-repair and bulk-refill retailers.</span></li>
+  </ul>
+  <div class="footnote"><span>Signed ___________________</span><span>Date __ / __ / ____</span></div>
+</div>
+
+</body></html>

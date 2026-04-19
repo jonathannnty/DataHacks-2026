@@ -11,7 +11,13 @@ export function GridMap({ children }: GridMapProps) {
   return (
     <div
       className="iso-grid relative"
-      style={{ width, height }}
+      style={{
+        width,
+        height,
+        transform:
+          "translateY(-34px) rotateX(60deg) rotateZ(-45deg) scale(0.84)",
+        transformOrigin: "50% 44%",
+      }}
       data-testid="grid-map"
     >
       {children}

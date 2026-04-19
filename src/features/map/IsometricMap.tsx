@@ -21,24 +21,58 @@ type BuildingSpec = {
 };
 
 const BUILDINGS: BuildingSpec[] = [
-  { key: "city_hall", x: 4, y: 4, defaultAsset: "city_hall_v1", label: "City Hall" },
-  { key: "landfill", x: 8, y: 1, defaultAsset: "landfill_empty_v1", label: "Landfill" },
-  { key: "recycling_center", x: 1, y: 7, defaultAsset: "recycling_center_v1", label: "MRF" },
-  { key: "industrial_zone", x: 7, y: 7, defaultAsset: "industrial_zone_v1", label: "Industrial" },
+  {
+    key: "city_hall",
+    x: 4,
+    y: 4,
+    defaultAsset: "city_hall_v1",
+    label: "City Hall",
+  },
+  {
+    key: "landfill",
+    x: 8,
+    y: 1,
+    defaultAsset: "landfill_empty_v1",
+    label: "Landfill",
+  },
+  {
+    key: "recycling_center",
+    x: 1,
+    y: 7,
+    defaultAsset: "recycling_center_v1",
+    label: "MRF",
+  },
+  {
+    key: "industrial_zone",
+    x: 7,
+    y: 7,
+    defaultAsset: "industrial_zone_v1",
+    label: "Industrial",
+  },
   { key: "park_zone", x: 2, y: 2, defaultAsset: "park_zone_v1", label: "Park" },
-  { key: "residential", x: 5, y: 1, defaultAsset: "residential_v1", label: "Residential" },
-  { key: "road_network", x: 4, y: 6, defaultAsset: "paved_road_v1", label: "Main Road" },
+  {
+    key: "residential",
+    x: 5,
+    y: 1,
+    defaultAsset: "residential_v1",
+    label: "Residential",
+  },
+  {
+    key: "road_network",
+    x: 4,
+    y: 6,
+    defaultAsset: "paved_road_v1",
+    label: "Main Road",
+  },
 ];
 
-function tileKindFor(
-  x: number,
-  y: number,
-  ecoHealth: number,
-): TileKind {
+function tileKindFor(x: number, y: number, ecoHealth: number): TileKind {
   const polluted = ecoHealth < 35;
-  if (x === 4 && y >= 0 && y <= 9) return polluted ? "littered_road" : "paved_road";
-  if (y === 4 && x >= 0 && x <= 9) return polluted ? "littered_road" : "paved_road";
-  if (x === 0 || x === 9) return polluted ? "toxic_water" : "clean_water";
+  if (x === 4 && y >= 0 && y <= 8)
+    return polluted ? "littered_road" : "paved_road";
+  if (y === 4 && x >= 0 && x <= 8)
+    return polluted ? "littered_road" : "paved_road";
+  if (x === 0 || x === 8) return polluted ? "toxic_water" : "clean_water";
   return polluted ? "polluted_grass" : "clean_grass";
 }
 
@@ -70,30 +104,42 @@ export function IsometricMap({
   }
 
   return (
-    <div className="iso-scene flex items-center justify-center overflow-hidden rounded-xl bg-slate-900/90 p-4 ring-1 ring-slate-700 shadow-inner min-h-[420px]">
-      <GridMap>
-        {tiles}
-        {BUILDINGS.map((b) => {
-          const override = mapState[b.key];
-          const assetId = override?.assetId ?? b.defaultAsset;
-          return (
-            <Tile key={`b-${b.key}`} x={b.x} y={b.y} kind="paved_road">
-              <Building
-                assetId={assetId}
-                label={b.label}
-                tone={toneFor(b.key, infraLoad, ecoHealth)}
-              />
-            </Tile>
-          );
-        })}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <CitizenBlob
-            key={`c-${i}`}
-            seed={i}
-            publicSentiment={publicSentiment}
-          />
-        ))}
-      </GridMap>
+    <div className="iso-scene iso-scene--desktop flex h-[240px] items-center justify-center p-2 lg:h-[280px]">
+      <div className="caps-label absolute left-4 top-3 text-paper-50/80">
+        Town of WasteVille · Live Feed
+      </div>
+      <div className="iso-board-frame">
+        <GridMap>
+          {tiles}
+          {BUILDINGS.map((b) => {
+            const override = mapState[b.key];
+            const assetId = override?.assetId ?? b.defaultAsset;
+            return (
+              <Tile
+                key={`b-${b.key}`}
+                x={b.x}
+                y={b.y}
+                zOffset={40}
+                kind="paved_road"
+              >
+                <Building
+                  assetId={assetId}
+                  label={b.label}
+                  tone={toneFor(b.key, infraLoad, ecoHealth)}
+                />
+              </Tile>
+            );
+          })}
+          {Array.from({ length: 6 }).map((_, i) => (
+            <CitizenBlob
+              key={`c-${i}`}
+              seed={i}
+              publicSentiment={publicSentiment}
+            />
+          ))}
+        </GridMap>
+      </div>
+      <div className="iso-screen-overlay" />
     </div>
   );
 }

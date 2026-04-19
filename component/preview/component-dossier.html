@@ -1,0 +1,166 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Dossier card</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Libre+Caslon+Text&family=Inter:wght@500;600;700&family=IBM+Plex+Sans:wght@500;600&family=JetBrains+Mono&display=swap">
+<style>
+body{margin:0;padding:40px 20px 40px;background:#6b4a2b;background-image:repeating-linear-gradient(95deg,rgba(26,20,16,.12) 0 1px,transparent 1px 3px,rgba(255,235,200,.04) 3px 7px);font-family:Inter;display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+
+.wrap{width:320px;position:relative;filter:drop-shadow(0 14px 20px rgba(0,0,0,.4))}
+
+/* the paper card uses an SVG mask to clip in ripped edges + wrinkle shading */
+.card{
+  position:relative;
+  background:#f5ecd7;
+  background-image:
+    repeating-linear-gradient(to bottom,transparent 0 23px,rgba(107,74,43,.08) 23px 24px);
+  /* extra right/bottom/left padding so text never sits near the subtle torn edge */
+  padding:22px 28px 28px;
+  border:1px solid rgba(107,74,43,.2);
+  color:#1a1410;
+}
+
+.tab{position:absolute;top:-16px;left:44px;background:#d9c99e;padding:5px 12px 4px;border-radius:4px 4px 0 0;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3b2e24;border:1px solid rgba(107,74,43,.3);border-bottom:0;z-index:2;white-space:nowrap;line-height:1}
+
+.id{font-family:'JetBrains Mono';font-size:10.5px;color:#8d6a3e;margin-bottom:4px;margin-top:6px}
+h2{font-family:'Special Elite';font-size:22px;margin:0 0 6px;color:#1a1410;line-height:1.2}
+p{font-family:'Libre Caslon Text',Georgia,serif;font-size:14px;line-height:1.55;color:#1a1410;margin:0 0 10px}
+
+.choices{display:flex;flex-direction:column;gap:6px}
+.c{display:flex;gap:10px;padding:9px 12px;background:#fff9ea;border:1px solid rgba(107,74,43,.28);border-radius:4px;
+   font-family:'IBM Plex Sans','Inter',sans-serif;
+   font-size:13.5px;font-weight:500;letter-spacing:.005em;line-height:1.35;color:#1a1410;align-items:flex-start}
+.c .k{width:20px;height:20px;border-radius:2px;background:#1a1410;color:#f5ecd7;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex:0 0 auto;font-family:'Special Elite';margin-top:1px}
+
+.stamp{position:absolute;right:14px;top:12px;border:2px solid #a8242b;color:#a8242b;padding:4px 10px;border-radius:3px;font-family:'Special Elite';font-size:12px;letter-spacing:.15em;text-transform:uppercase;transform:rotate(-6deg);opacity:.85;z-index:2}
+
+/* coffee-ring stain overlay */
+.stain{position:absolute;border-radius:999px;pointer-events:none;mix-blend-mode:multiply;opacity:.55}
+.stain.ring{
+  background:radial-gradient(circle at center,transparent 55%,rgba(120,53,15,.35) 56% 62%,rgba(120,53,15,.18) 63% 68%,transparent 70%);
+  filter:blur(.5px);
+}
+.stain.splotch{
+  background:radial-gradient(circle at 40% 45%,rgba(120,53,15,.38),rgba(120,53,15,.1) 60%,transparent 70%);
+  filter:blur(1px);
+}
+.stain.grease{
+  background:radial-gradient(ellipse at center,rgba(234,179,8,.2),transparent 65%);
+}
+
+/* wrinkle overlay — diagonal highlight/shadow streaks */
+.wrinkles{position:absolute;inset:0;pointer-events:none;mix-blend-mode:overlay;opacity:.35}
+
+/* tape strips */
+.tape{position:absolute;width:70px;height:22px;background:rgba(236,220,160,.65);border:1px solid rgba(160,130,70,.25);backdrop-filter:blur(1px);mix-blend-mode:multiply;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.tape::before, .tape::after{content:"";position:absolute;top:0;bottom:0;width:4px;background:
+  repeating-linear-gradient(90deg,transparent 0 2px,rgba(0,0,0,.08) 2px 3px);}
+.tape::before{left:0}.tape::after{right:0}
+
+/* pushpin */
+.pin{position:absolute;width:13px;height:13px;border-radius:999px;
+  background:radial-gradient(circle at 35% 30%,#fff 0%,#ef4444 30%,#7f1d1d 80%);
+  box-shadow:0 2px 4px rgba(0,0,0,.4), inset 0 -2px 2px rgba(0,0,0,.2);
+  z-index:3}
+
+/* paperclip */
+.clip{position:absolute;z-index:3;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+</style></head><body>
+
+<!-- SVG defs: ragged-edge clip-path masks + wrinkle texture -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <!-- Wrinkle pattern generator -->
+    <filter id="wrinkle1">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.08" numOctaves="2" seed="3"/>
+      <feColorMatrix values="0 0 0 0 .5   0 0 0 0 .4   0 0 0 0 .2   0 0 0 1 0"/>
+    </filter>
+    <filter id="wrinkle2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.06" numOctaves="2" seed="11"/>
+      <feColorMatrix values="0 0 0 0 .5   0 0 0 0 .4   0 0 0 0 .2   0 0 0 1 0"/>
+    </filter>
+    <filter id="wrinkle3">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04 0.1" numOctaves="2" seed="22"/>
+      <feColorMatrix values="0 0 0 0 .5   0 0 0 0 .4   0 0 0 0 .2   0 0 0 1 0"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- VARIANT A: subtle right edge, pushpin, coffee ring -->
+<div class="wrap" style="transform:rotate(-1.5deg)">
+  <div class="card" style="clip-path:polygon(
+      0 0, 100% 0, 99.2% 20%, 100% 42%, 99.3% 65%, 100% 85%, 99.5% 100%,
+      0 100%
+    )">
+    <div class="tab">№&nbsp;ROOT_001&nbsp;·&nbsp;MEMO</div>
+    <div class="stamp">Pending</div>
+    <div class="id">OFFICE OF THE WASTE CZAR · FY 2026 Q2</div>
+    <h2>The Great Overflow</h2>
+    <p>WasteVille's only landfill is at 85% capacity. The EPA is knocking and the smell is reaching the suburbs. Handle the next 5.0 lbs per person per day.</p>
+    <div class="choices">
+      <div class="c"><span class="k">A</span><span>Launch the Green Mandate — source-reduction policies.</span></div>
+      <div class="c"><span class="k">B</span><span>Fund industrial expansion and processing capacity.</span></div>
+      <div class="c"><span class="k">C</span><span>Maintain status quo with minor odor controls.</span></div>
+    </div>
+    <!-- stains -->
+    <div class="stain ring" style="width:68px;height:68px;bottom:60px;right:-10px"></div>
+    <div class="stain grease" style="width:90px;height:30px;bottom:-4px;left:30%"></div>
+    <!-- wrinkles -->
+    <svg class="wrinkles" viewBox="0 0 320 500" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#wrinkle1)"/></svg>
+  </div>
+  <!-- pushpin in top-left -->
+  <div class="pin" style="top:-8px;left:18px"></div>
+</div>
+
+<!-- VARIANT B: subtle bottom edge, masking tape, splotch -->
+<div class="wrap" style="transform:rotate(1.2deg)">
+  <div class="card" style="clip-path:polygon(
+      0 0, 100% 0, 100% 100%, 82% 99.3%, 60% 100%, 38% 99.4%, 18% 100%,
+      0 99.5%
+    )">
+    <div class="tab">№&nbsp;ROOT_002&nbsp;·&nbsp;MEMO</div>
+    <div class="stamp" style="color:#047857;border-color:#047857;transform:rotate(6deg)">Received</div>
+    <div class="id">OFFICE OF THE WASTE CZAR · FY 2026 Q3</div>
+    <h2>The Recycling Paradox</h2>
+    <p>A whistleblower's report lands on your desk: half of what residents sorted into blue bins was baled and shipped overseas. Faith in the program is cratering.</p>
+    <div class="choices">
+      <div class="c"><span class="k">A</span><span>Publish audited diversion numbers; mandate local processing.</span></div>
+      <div class="c"><span class="k">B</span><span>Pivot budget toward source-reduction and refill infrastructure.</span></div>
+      <div class="c"><span class="k">C</span><span>Quietly consolidate bins; reframe as streamlined service.</span></div>
+    </div>
+    <!-- stains -->
+    <div class="stain splotch" style="width:40px;height:36px;top:80px;right:40px"></div>
+    <div class="stain ring" style="width:52px;height:52px;top:20px;right:110px;opacity:.4"></div>
+    <!-- wrinkles -->
+    <svg class="wrinkles" viewBox="0 0 320 500" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#wrinkle2)"/></svg>
+  </div>
+  <!-- masking tape bottom only so the top tab reads clearly -->
+  <div class="tape" style="bottom:-8px;left:36px;transform:rotate(-6deg);width:90px"></div>
+</div>
+
+<!-- VARIANT C: subtle left edge, paperclip, big stain -->
+<div class="wrap" style="transform:rotate(-2deg)">
+  <div class="card" style="clip-path:polygon(
+      0 0, 100% 0, 100% 100%, 0 100%,
+      0.5% 80%, 1% 58%, 0.4% 36%, 1% 14%
+    )">
+    <div class="tab" style="left:auto;right:22px">№&nbsp;ROOT_003&nbsp;·&nbsp;MEMO</div>
+    <div class="stamp" style="color:#78350f;border-color:#78350f;transform:rotate(-8deg);opacity:.75">Classified</div>
+    <div class="id">OFFICE OF THE WASTE CZAR · FY 2026 Q4</div>
+    <h2>Plastic in the River</h2>
+    <p>Downstream towns are filing complaints. Microplastics have been detected in the reservoir that serves three counties. The press has the story by Friday.</p>
+    <div class="choices">
+      <div class="c"><span class="k">A</span><span>Emergency ordinance banning single-use plastics citywide.</span></div>
+      <div class="c"><span class="k">B</span><span>Install river-skimmers; fund a producer-responsibility fee.</span></div>
+      <div class="c"><span class="k">C</span><span>Dispatch PR team; commission an 18-month study.</span></div>
+    </div>
+    <!-- stains -->
+    <div class="stain splotch" style="width:80px;height:70px;bottom:100px;left:-20px;opacity:.65"></div>
+    <div class="stain grease" style="width:60px;height:40px;top:40px;right:60px"></div>
+    <!-- wrinkles -->
+    <svg class="wrinkles" viewBox="0 0 320 500" preserveAspectRatio="none"><rect width="100%" height="100%" filter="url(#wrinkle3)"/></svg>
+  </div>
+  <!-- paperclip -->
+  <svg class="clip" style="top:-8px;right:30px" width="20" height="40" viewBox="0 0 20 40">
+    <path d="M6 4 Q6 2 8 2 H14 Q16 2 16 4 V32 Q16 36 12 36 Q8 36 8 32 V12 Q8 10 10 10 Q12 10 12 12 V28" fill="none" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+</div>
+
+</body></html>

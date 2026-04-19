@@ -1,6 +1,6 @@
 export const TILE_WIDTH = 128;
 export const TILE_HEIGHT = 64;
-export const GRID_SIZE = 10;
+export const GRID_SIZE = 9;
 
 export type GridCoord = { x: number; y: number };
 

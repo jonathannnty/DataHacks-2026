@@ -11,19 +11,160 @@ body,
 #root {
   height: 100%;
 }
-
-body {
-  @apply bg-civic-bone text-civic-slateDark font-civic antialiased;
+.new-term-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px 14px 18px;
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(245, 216, 138, 0.12),
+      transparent 55%
+    ),
+    linear-gradient(180deg, #4a1418 0%, #2a0a0d 100%);
+  color: #f5ecd7;
+  border: 1px solid #c9a66b;
+  border-radius: 4px;
+  font-family: "Libre Caslon Text", Georgia, serif;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px #2a0b0e inset,
+    0 0 0 3px #c9a66b,
+    0 0 0 4px #8d6a3e,
+    0 12px 26px -10px rgba(0, 0, 0, 0.7);
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    filter 140ms ease;
 }
 
+body {
+  margin: 0;
+  font-family: "Libre Caslon Text", Georgia, serif;
+  color: #1a1410;
+  background: #4a341f;
+  background-image:
+    repeating-linear-gradient(
+      95deg,
+      rgba(26, 20, 16, 0.18) 0 1px,
+      transparent 1px 3px,
+      rgba(255, 235, 200, 0.05) 3px 7px
+    ),
+    repeating-linear-gradient(
+      87deg,
+      rgba(255, 235, 200, 0.05) 0 2px,
+      transparent 2px 9px
+    ),
+    linear-gradient(180deg, #7a5532 0%, #6b4a2b 60%, #5a3f25 100%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================================================================
+   Desk shell — the Czar's oak desk with nailed-brass edge.
+   ========================================================================= */
+.desk-shell {
+  max-width: 1180px;
+  margin: 24px auto;
+  padding: 24px;
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 235, 200, 0.06), rgba(0, 0, 0, 0.15)),
+    repeating-linear-gradient(
+      92deg,
+      rgba(26, 20, 16, 0.12) 0 1px,
+      transparent 1px 4px
+    );
+  box-shadow:
+    0 1px 0 rgba(255, 235, 200, 0.08) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.3) inset,
+    0 20px 60px -20px rgba(0, 0, 0, 0.55);
+}
+
+/* =========================================================================
+   Caps label — small-caps kicker used across paper surfaces.
+   ========================================================================= */
+.caps-label {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #334155;
+}
+
+/* =========================================================================
+   Paper surface — ledger-lined manila/cream card for dossiers.
+   ========================================================================= */
+.paper {
+  background-color: #f5ecd7;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 23px,
+    rgba(107, 74, 43, 0.08) 23px,
+    rgba(107, 74, 43, 0.08) 24px
+  );
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.04),
+    0 10px 24px -12px rgba(59, 42, 26, 0.35);
+  border-radius: 12px;
+}
+
+.dossier-specimen {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    99.2% 20%,
+    100% 42%,
+    99.3% 65%,
+    100% 85%,
+    99.5% 100%,
+    0 100%
+  );
+}
+
+/* =========================================================================
+   Isometric monitor — brass-framed well set into the desk, CRT scanlines.
+   ========================================================================= */
 .iso-scene {
-  perspective: 1400px;
-  perspective-origin: 50% 35%;
+  position: relative;
+  perspective: 1200px;
+  perspective-origin: 50% 38%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: radial-gradient(
+    ellipse at center,
+    #1e293b 0%,
+    #0f172a 70%,
+    #030712 100%
+  );
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 6px #1f1915,
+    inset 0 0 0 8px #c9a66b;
+}
+.iso-scene--desktop {
+  min-height: 240px;
+}
+
+.iso-board-frame {
+  position: relative;
+  width: min(100%, 980px);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .iso-grid {
+  position: relative;
   transform-style: preserve-3d;
-  transform: rotateX(60deg) rotateZ(-45deg);
+  transform: translateY(-34px) rotateX(60deg) rotateZ(-45deg) scale(0.84);
+  transform-origin: 50% 50%;
 }
 
 .iso-tile {
@@ -32,6 +173,10 @@ body {
   height: 64px;
   transform: translate(-50%, -50%);
   will-change: transform;
+  isolation: isolate;
+  border-radius: 2px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.22);
 }
 
 .iso-citizen {
@@ -44,5 +189,712 @@ body {
 
 .iso-tile-inner {
   /* Counter-rotate so building sprites face the camera */
-  transform: rotateZ(45deg) rotateX(-60deg);
+  transform: rotateZ(45deg) rotateX(-58deg);
+  transform-style: preserve-3d;
+}
+
+.iso-screen-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* =========================================================================
+   Dossier folder tab — a triangular manila flap riding atop the paper.
+   ========================================================================= */
+.folder-tab {
+  position: absolute;
+  top: -18px;
+  left: 32px;
+  padding: 4px 18px 6px;
+  background: #d9c99e;
+  color: #3b2e24;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Three punch holes on the dossier's binding edge */
+.punch-holes {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  pointer-events: none;
+}
+.punch-holes > span {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4a341f;
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+/* Stacked siblings peeking behind the active dossier */
+.stacked-paper,
+.manila-envelope {
+  position: absolute;
+  border-radius: 10px;
+  pointer-events: none;
+}
+.stacked-paper {
+  inset: 10px -6px -8px 6px;
+  background: #ede1c4;
+  box-shadow: 0 8px 18px -10px rgba(59, 42, 26, 0.4);
+  transform: rotate(1.4deg);
+  z-index: 0;
+}
+.manila-envelope {
+  inset: 16px -14px -14px 14px;
+  background: #d9c99e;
+  transform: rotate(-2deg);
+  z-index: -1;
+  box-shadow: 0 12px 22px -12px rgba(59, 42, 26, 0.5);
+}
+
+/* Remaining-today queue — layered index cards pulled from the day's stack */
+.remaining-today-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.remaining-today-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  padding: 8px 10px 8px 18px;
+  border: 1px solid rgba(107, 74, 43, 0.24);
+  border-radius: 10px 8px 8px 10px;
+  background: linear-gradient(180deg, #fff9ea 0%, #f3e8c8 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 6px 12px -10px rgba(59, 42, 26, 0.45);
+}
+.remaining-today-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  background: linear-gradient(180deg, #d9c99e 0%, #c9a66b 100%);
+  border-right: 1px solid rgba(107, 74, 43, 0.24);
+  clip-path: polygon(0 0, 100% 0, 85% 50%, 100% 100%, 0 100%);
+}
+.remaining-today-card::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: -1px;
+  width: 38px;
+  height: 8px;
+  border: 1px solid rgba(107, 74, 43, 0.2);
+  border-bottom: 0;
+  border-radius: 6px 6px 0 0;
+  background: #d9c99e;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.45) inset;
+}
+.remaining-today-card > span {
+  position: relative;
+  z-index: 1;
+}
+.remaining-today-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #047857;
+  color: #fff;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  flex: 0 0 auto;
+}
+
+.hud-panel {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(107, 74, 43, 0.2);
+  box-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.05),
+    0 10px 24px -12px rgba(59, 42, 26, 0.4);
+}
+
+.hud-metric {
+  min-width: 0;
+}
+
+.hud-bar {
+  position: relative;
+  border: 1px solid rgba(107, 74, 43, 0.35);
+  overflow: hidden;
+}
+
+.hud-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background-image: linear-gradient(
+    90deg,
+    transparent 0 calc(20% - 0.5px),
+    rgba(26, 20, 16, 0.55) calc(20% - 0.5px) calc(20% + 0.5px),
+    transparent calc(20% + 0.5px) calc(40% - 0.5px),
+    rgba(26, 20, 16, 0.55) calc(40% - 0.5px) calc(40% + 0.5px),
+    transparent calc(40% + 0.5px) calc(60% - 0.5px),
+    rgba(26, 20, 16, 0.55) calc(60% - 0.5px) calc(60% + 0.5px),
+    transparent calc(60% + 0.5px) calc(80% - 0.5px),
+    rgba(26, 20, 16, 0.55) calc(80% - 0.5px) calc(80% + 0.5px),
+    transparent calc(80% + 0.5px) 100%
+  );
+}
+
+.hud-fill {
+  position: relative;
+  z-index: 1;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.18);
+}
+
+.hud-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -2px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5px;
+  color: #8d6a3e;
+  letter-spacing: 0;
+}
+
+.hud-ticks span {
+  transform: translateX(-50%);
+}
+
+.hud-ticks span:first-child {
+  transform: none;
+}
+
+.hud-ticks span:last-child {
+  transform: translateX(0);
+}
+
+.dossier-card {
+  overflow: visible;
+}
+
+.term-concluded-overlay {
+  position: absolute;
+  top: 20px;
+  left: 14px;
+  right: 14px;
+  z-index: 45;
+  pointer-events: auto;
+  border: 1px solid rgba(201, 166, 107, 0.65);
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.96),
+    rgba(2, 6, 23, 0.96)
+  );
+  box-shadow:
+    0 0 0 1px rgba(26, 20, 16, 0.92) inset,
+    0 10px 26px -14px rgba(0, 0, 0, 0.75);
+  padding: 10px 12px 12px;
+  transform: rotate(-1.2deg);
+}
+
+.term-concluded-overlay__kicker {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c9a66b;
+}
+
+.term-concluded-overlay__title {
+  margin-top: 3px;
+  font-family: "Special Elite", "Courier Prime", monospace;
+  font-size: 17px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #f5ecd7;
+}
+
+.term-concluded-overlay__body {
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-family: "Libre Caslon Text", Georgia, serif;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: #ede1c4;
+}
+
+.term-concluded-overlay__actions {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.term-concluded-overlay__actions .desk-btn--action {
+  min-width: 146px;
+  padding: 10px 12px 10px 14px;
+}
+
+.term-concluded-overlay__actions .desk-btn__kicker {
+  font-size: 11px;
+}
+
+.term-concluded-overlay__actions .desk-btn__sub {
+  font-size: 8px;
+}
+
+.dossier-next-tab {
+  position: absolute;
+  top: -11px;
+  right: 42px;
+  width: 126px;
+  height: 17px;
+  border: 1px solid rgba(107, 74, 43, 0.22);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(180deg, #d9c99e 0%, #ede1c4 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 2px 0 rgba(0, 0, 0, 0.06);
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+/* =========================================================================
+   Choice button — cream-paper action row with hover emerald.
+   ========================================================================= */
+.czar-choice {
+  background: #fff9ea;
+  border: 1px solid rgba(107, 74, 43, 0.35);
+  color: #1a1410;
+  transition:
+    border-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 140ms ease;
+}
+.czar-choice:hover {
+  border-color: #10b981;
+  background: #ecfdf5;
+}
+.czar-choice--approved {
+  box-shadow:
+    inset 3px 0 0 #047857,
+    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+.czar-choice--denied {
+  box-shadow:
+    inset 3px 0 0 #a8242b,
+    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+.czar-choice--catastrophe {
+  box-shadow:
+    inset 3px 0 0 #7a161c,
+    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+.czar-choice:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+.czar-choice:active {
+  transform: scale(0.99);
+}
+
+.choice-flag,
+.choice-pill,
+.choice-result {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.choice-flag {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  font-size: 10px;
+  color: #fff9ea;
+  background: #1a1410;
+}
+.choice-flag--approved,
+.choice-result--approved,
+.choice-pill--approved {
+  background: #047857;
+  color: #f5ecd7;
+}
+.choice-flag--denied,
+.choice-result--denied,
+.choice-pill--denied {
+  background: #a8242b;
+  color: #f5ecd7;
+}
+.choice-flag--catastrophe,
+.choice-result--catastrophe,
+.choice-pill--catastrophe {
+  background: #7a161c;
+  color: #f5ecd7;
+}
+.choice-result {
+  padding: 2px 7px;
+  font-size: 8.5px;
+}
+.choice-pill {
+  flex: 0 0 auto;
+  padding: 4px 9px;
+  font-size: 9px;
+  border: 1px solid currentColor;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset;
+}
+
+/* =========================================================================
+   Wax-seal stamp — inked overlay on a dossier verdict.
+   ========================================================================= */
+.czar-stamp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  font-family: "Special Elite", "Courier Prime", monospace;
+  font-size: 18px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 3px double currentColor;
+  border-radius: 2px;
+  transform: var(--stamp-rotate, rotate(-6deg)) scale(0.92);
+  transform-origin: 75% 25%;
+  opacity: 0.9;
+  user-select: none;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+}
+.czar-stamp--approved {
+  color: #047857;
+  animation: stamp-approved 540ms cubic-bezier(0.18, 0.95, 0.25, 1);
+}
+.czar-stamp--denied {
+  color: #7a161c;
+  animation: stamp-denied 560ms cubic-bezier(0.18, 0.95, 0.25, 1);
+}
+.czar-stamp--pending {
+  color: #8d6a3e;
+  animation: stamp-pending 520ms cubic-bezier(0.18, 0.95, 0.25, 1);
+}
+.czar-stamp--catastrophe {
+  color: #7a161c;
+  border-style: dashed;
+  animation: stamp-catastrophe 640ms cubic-bezier(0.16, 1.1, 0.24, 1);
+}
+
+@keyframes stamp-approved {
+  0% {
+    opacity: 0;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(0.3)
+      translate(14px, -12px);
+  }
+  60% {
+    opacity: 1;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(1.08) translate(0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(1);
+  }
+}
+
+@keyframes stamp-denied {
+  0% {
+    opacity: 0;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(0.25)
+      translate(-14px, -10px) rotate(-10deg);
+  }
+  48% {
+    opacity: 1;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(1.1) translate(0, 0)
+      rotate(1deg);
+  }
+  70% {
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(0.98) translate(0, 0)
+      rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(1);
+  }
+}
+
+@keyframes stamp-pending {
+  0% {
+    opacity: 0;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(0.4) translateY(-8px);
+  }
+  100% {
+    opacity: 0.9;
+    transform: var(--stamp-rotate, rotate(-6deg)) scale(1);
+  }
+}
+
+@keyframes stamp-catastrophe {
+  0% {
+    opacity: 0;
+    transform: var(--stamp-rotate, rotate(5deg)) scale(0.28)
+      translate(18px, -16px) rotate(15deg);
+  }
+  55% {
+    opacity: 1;
+    transform: var(--stamp-rotate, rotate(5deg)) scale(1.12) translate(0, 0)
+      rotate(-4deg);
+  }
+  78% {
+    transform: var(--stamp-rotate, rotate(5deg)) scale(0.98) translate(0, 0)
+      rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: var(--stamp-rotate, rotate(5deg)) scale(1);
+  }
+}
+
+.desk-btn--action {
+  position: relative;
+  display: inline-flex;
+  min-width: 168px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 12px 16px 12px 18px;
+  background: linear-gradient(180deg, #1f2937 0%, #0f172a 100%);
+  color: #f5ecd7;
+  border-color: rgba(201, 166, 107, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(26, 20, 16, 0.9) inset,
+    0 0 0 3px rgba(201, 166, 107, 0.85),
+    0 10px 22px -12px rgba(15, 23, 42, 0.65);
+}
+.desk-btn--action::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 7px;
+  background: linear-gradient(
+    135deg,
+    rgba(245, 216, 138, 0.14),
+    transparent 45%
+  );
+  pointer-events: none;
+}
+.desk-btn--action:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(180deg, #111827 0%, #020617 100%);
+  border-color: rgba(245, 216, 138, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(26, 20, 16, 0.9) inset,
+    0 0 0 3px rgba(245, 216, 138, 0.85),
+    0 14px 26px -12px rgba(15, 23, 42, 0.75);
+}
+.desk-btn__kicker {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  line-height: 1;
+}
+.desk-btn__sub {
+  position: relative;
+  z-index: 1;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d9c99e;
+}
+.new-term-btn::before,
+.new-term-btn::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #f5d88a, #c9a66b 60%, #6b4a2b);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  top: 5px;
+}
+.new-term-btn::before {
+  left: 5px;
+}
+.new-term-btn::after {
+  right: 5px;
+}
+.new-term-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px #2a0b0e inset,
+    0 0 0 3px #f5d88a,
+    0 0 0 4px #a8853e,
+    0 16px 30px -10px rgba(0, 0, 0, 0.75);
+}
+.new-term-btn:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 0 0 1px #2a0b0e inset,
+    0 0 0 3px #c9a66b,
+    0 0 0 4px #6b4a2b,
+    0 4px 10px -4px rgba(0, 0, 0, 0.7);
+}
+.new-term-btn:focus-visible {
+  outline: 2px solid #f5d88a;
+  outline-offset: 4px;
+}
+.new-term-btn .nt-ribbon {
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #a8242b, #7a161c);
+  color: #f5ecd7;
+  font-family: "Special Elite";
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 3px 14px;
+  clip-path: polygon(
+    6px 0,
+    calc(100% - 6px) 0,
+    100% 50%,
+    calc(100% - 6px) 100%,
+    6px 100%,
+    0 50%
+  );
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+.new-term-btn .nt-crest {
+  display: inline-flex;
+  transform: rotate(0deg) scale(1);
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.6));
+  transition: transform 0.3s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+.new-term-btn:hover .nt-crest {
+  transform: rotate(-6deg) scale(1.04);
+}
+.new-term-btn .nt-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
+  text-align: left;
+}
+.new-term-btn .nt-kicker {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #c9a66b;
+  margin-bottom: 4px;
+}
+.new-term-btn .nt-title {
+  font-family: "Special Elite";
+  font-size: 17px;
+  color: #f5ecd7;
+  letter-spacing: 0.03em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+}
+.new-term-btn .nt-sub {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  color: #d9c99e;
+  margin-top: 4px;
+  letter-spacing: 0.14em;
+  opacity: 0.75;
+}
+
+/* Shared action button styles for desk screens */
+.desk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  padding: 8px 12px;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    transform 130ms ease,
+    box-shadow 130ms ease,
+    background-color 130ms ease,
+    border-color 130ms ease;
+}
+.desk-btn:hover {
+  transform: translateY(-1px);
+}
+.desk-btn:active {
+  transform: translateY(0);
+}
+.desk-btn:focus-visible {
+  outline: 2px solid #f5d88a;
+  outline-offset: 2px;
+}
+.desk-btn--primary {
+  background: linear-gradient(180deg, #10b981 0%, #047857 100%);
+  color: #fff;
+  border-color: rgba(4, 120, 87, 0.9);
+  box-shadow: 0 4px 12px -8px rgba(4, 120, 87, 0.9);
+}
+.desk-btn--primary:hover {
+  background: linear-gradient(180deg, #12c38e 0%, #065f46 100%);
+}
+.desk-btn--ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f5ecd7;
+  border-color: rgba(201, 166, 107, 0.4);
+}
+.desk-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(201, 166, 107, 0.75);
+}
+
+/* Action Center checklist row treatment */
+.checklist-row {
+  background: #fff9ea;
+  border: 1px solid rgba(107, 74, 43, 0.2);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+.checklist-box {
+  accent-color: #047857;
 }

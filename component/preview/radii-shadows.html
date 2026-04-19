@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Radii & Shadows</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap">
+<style>body{margin:0;padding:16px;background:#faf6ec;font-family:Inter;color:#1a1410}
+.row{display:flex;gap:12px;margin-bottom:10px;align-items:center}
+.box{width:80px;height:50px;background:#f5ecd7;border:1px solid rgba(107,74,43,.2);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-size:11px;color:#3b2e24}
+.lbl{font-family:Inter;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8d6a3e}
+.desc{font-family:'JetBrains Mono';font-size:11px;color:#3b2e24}</style>
+</head><body>
+<div class="lbl" style="margin-bottom:6px">Radii</div>
+<div class="row"><div class="box" style="border-radius:4px">4</div><div class="box" style="border-radius:8px">8</div><div class="box" style="border-radius:12px">12</div><div class="box" style="border-radius:16px">16</div><div class="box" style="border-radius:9999px">pill</div></div>
+<div class="lbl" style="margin:12px 0 6px">Shadow tokens</div>
+<div class="row"><div class="box" style="border-radius:12px;box-shadow:0 1px 0 rgba(0,0,0,.04),0 10px 24px -12px rgba(59,42,26,.35)">paper</div><div class="desc">.paper · resting dossier</div></div>
+<div class="row"><div class="box" style="border-radius:12px;box-shadow:0 2px 0 rgba(0,0,0,.04),0 18px 40px -16px rgba(59,42,26,.5)">paper-lg</div><div class="desc">lifted card · active dossier</div></div>
+<div class="row"><div class="box" style="border-radius:12px;background:#0f172a;color:#94a3b8;box-shadow:inset 0 2px 8px rgba(0,0,0,.35)">sunken</div><div class="desc">map well · inset</div></div>
+</body></html>
